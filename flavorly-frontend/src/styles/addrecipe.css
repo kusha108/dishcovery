@@ -1,0 +1,126 @@
+/* General reset and font settings */
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+    
+    /* Add Recipe Container */
+    .add-recipe-container {
+      max-width: 750px;
+      margin: 50px auto;
+      margin-top: 150px;
+      padding: 20px;
+      background-color: #a6c05e;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    
+    .add-recipe-container h2 {
+      font-size: 2rem;
+      color: #444;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    /* Form Styling */
+    .add-recipe-form {
+      display: flex;
+      /* max-width: 400px; */
+      flex-direction: column;
+      gap: 20px;
+    }
+    #title{
+      width: 500px;
+    }
+    #ing{
+      width: 500px;
+    }
+    #instructions{
+      width: 500px;
+    }
+    #imageUrl{
+      width: 500px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .form-group label {
+      font-size: 1.1rem;
+      color: #444;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+      font-size: 1rem;
+      color: #444;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    
+    /* Add Ingredient Button */
+    .add-ingredient-btn {
+      margin-top: 10px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #42c671;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .add-ingredient-btn:hover {
+      background-color: #37a35a;
+    }
+    
+    /* Submit Button */
+    .submit-btn {
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      color: #fff;
+      width: 500px;
+      background-color: #d988b9;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      
+      text-align: center;
+    }
+    
+    .submit-btn:hover {
+      background-color: #c176a5;
+      width: 500px;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .add-recipe-container {
+        margin: 20px;
+        padding: 20px;
+      }
+    
+      .add-recipe-container h2 {
+        font-size: 1.5rem;
+      }
+    }

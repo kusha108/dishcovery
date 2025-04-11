@@ -1,0 +1,64 @@
+.liked-recipes {
+      padding: 2rem;
+      background-color: #fdfdfd;
+      min-height: 100vh;
+    }
+    
+    .liked-recipes h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #e63946;
+    }
+    
+    .recipe-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .recipe-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .recipe-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .recipe-card img {
+      width: 100%;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    
+    .recipe-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .recipe-card ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .recipe-card button {
+      padding: 0.6rem 1.2rem;
+      background-color: #ef476f;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .recipe-card button:hover {
+      background-color: #d62839;
+    }
+    
