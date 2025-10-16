@@ -1,15 +1,15 @@
-# dependencies
+# Node modules
 node_modules/
 
-# environment variables
+# Environment files
 .env
-.env.local
-.env.development
-.env.production
 
-# build files
-/build
-/dist
+# Build and logs
+build/
+dist/
+*.log
 
-# system files
+# System files
 .DS_Store
+Thumbs.db
+
