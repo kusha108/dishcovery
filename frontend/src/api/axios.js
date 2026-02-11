@@ -3,7 +3,7 @@ import axios from "axios";
 /* ===== BASE URL SWITCH ===== */
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://dishcovery-f03b.onrender.com"
+    ? "https://dishcovery-f03b.onrender.com/api"
     : "http://localhost:5000/api";
 
 /* ===== AXIOS INSTANCE ===== */
