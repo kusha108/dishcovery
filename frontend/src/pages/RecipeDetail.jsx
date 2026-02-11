@@ -23,7 +23,7 @@ export default function RecipeDetail() {
   const [snack, setSnack] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const backendURL = "http://localhost:5000";
+  const backendURL = "https://dishcovery-f03b.onrender.com";
 
   useEffect(() => {
     api.get(`/recipes/${id}`)
