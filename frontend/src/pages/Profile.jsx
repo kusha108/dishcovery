@@ -55,7 +55,7 @@ export default function Profile() {
         setLiked(res.data.likedRecipes || []);
       })
       .catch(() => {});
-  }, []);
+  }, [token]);
 
   const logout = () => {
     localStorage.clear();

@@ -11,7 +11,7 @@ import {
   Chip
 } from "@mui/material";
 import api from "../api/axios";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
+//import RestaurantIcon from "@mui/icons-material/Restaurant";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 export default function AI() {
