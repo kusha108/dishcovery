@@ -12,12 +12,33 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
   const [alert, setAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("SENDING:", form);
+
+    // ✅ CLIENT VALIDATION
+    if (!form.name || !form.email || !form.password) {
+      return window.alert("All fields required");
+    }
+
+    if (form.password.length < 6) {
+      return window.alert("Password must be 6+ characters");
+    }
+
+    if (loading) return;
+    setLoading(true);
 
     try {
       const res = await api.post("/auth/register", form);
@@ -31,10 +52,11 @@ export default function Register() {
       console.log("ERROR:", err.response?.data);
 
       window.alert(
-        err.response?.data?.message ||
-        "Registration failed"
+        err.response?.data?.message || "Registration failed"
       );
     }
+
+    setLoading(false);
   };
 
   return (
@@ -46,40 +68,40 @@ export default function Register() {
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
-          overflow:"hidden",
-          color:"#fff",
+          overflow: "hidden",
+          color: "#fff",
           background:
             "linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)",
         }}
       >
 
         <Box sx={{
-          position:"absolute",
-          inset:0,
-          opacity:0.06,
-          fontSize:60
+          position: "absolute",
+          inset: 0,
+          opacity: 0.06,
+          fontSize: 60
         }}>
           {"🍕🍔🍣🍜🍩🥗".repeat(25)}
         </Box>
 
         <Box sx={{
-          position:"absolute",
-          width:350,
-          height:350,
-          background:"radial-gradient(#ff980055,transparent 70%)",
-          top:"10%",
-          left:"10%",
-          filter:"blur(100px)"
+          position: "absolute",
+          width: 350,
+          height: 350,
+          background: "radial-gradient(#ff980055,transparent 70%)",
+          top: "10%",
+          left: "10%",
+          filter: "blur(100px)"
         }}/>
 
         <Box sx={{
-          position:"absolute",
-          width:350,
-          height:350,
-          background:"radial-gradient(#ff174455,transparent 70%)",
-          bottom:"10%",
-          right:"10%",
-          filter:"blur(100px)"
+          position: "absolute",
+          width: 350,
+          height: 350,
+          background: "radial-gradient(#ff174455,transparent 70%)",
+          bottom: "10%",
+          right: "10%",
+          filter: "blur(100px)"
         }}/>
 
         <Card
@@ -106,8 +128,8 @@ export default function Register() {
             sx={{
               background:
                 "linear-gradient(45deg,#ff9800,#ff1744)",
-              WebkitBackgroundClip:"text",
-              WebkitTextFillColor:"transparent",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
             }}
           >
             🍽️ Create Account
@@ -124,13 +146,12 @@ export default function Register() {
 
           <form onSubmit={handleSubmit}>
 
-            {/* FIXED INPUT HANDLERS BELOW */}
-
             <TextField
               label="Full Name"
               fullWidth
               required
               margin="normal"
+              value={form.name}
               onChange={(e) =>
                 setForm(prev => ({ ...prev, name: e.target.value }))
               }
@@ -145,6 +166,7 @@ export default function Register() {
               fullWidth
               required
               margin="normal"
+              value={form.email}
               onChange={(e) =>
                 setForm(prev => ({ ...prev, email: e.target.value }))
               }
@@ -159,6 +181,7 @@ export default function Register() {
               fullWidth
               required
               margin="normal"
+              value={form.password}
               onChange={(e) =>
                 setForm(prev => ({ ...prev, password: e.target.value }))
               }
@@ -169,6 +192,7 @@ export default function Register() {
 
             <Button
               type="submit"
+              disabled={loading}
               fullWidth
               variant="contained"
               sx={{
@@ -202,8 +226,8 @@ export default function Register() {
               style={{
                 background:
                   "linear-gradient(45deg,#ff9800,#ff1744)",
-                WebkitBackgroundClip:"text",
-                WebkitTextFillColor:"transparent",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
                 cursor: "pointer",
                 fontWeight: 700,
               }}
