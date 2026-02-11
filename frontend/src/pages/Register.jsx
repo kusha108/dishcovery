@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   TextField,
@@ -18,25 +17,25 @@ export default function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await api.post("/auth/register", form);
+    try {
+      const res = await api.post("/auth/register", form);
 
-    console.log("SUCCESS:", res.data);
+      console.log("SUCCESS:", res.data);
 
-    setAlert(true);
-    setTimeout(() => navigate("/login"), 1500);
+      setAlert(true);
+      setTimeout(() => navigate("/login"), 1500);
 
-  } catch (err) {
-    console.log("ERROR:", err.response?.data);
+    } catch (err) {
+      console.log("ERROR:", err.response?.data);
 
-    window.alert(
-      err.response?.data?.message ||
-      "Registration failed"
-    );
-  }
-};
+      window.alert(
+        err.response?.data?.message ||
+        "Registration failed"
+      );
+    }
+  };
 
   return (
     <Fade in timeout={600}>
@@ -49,13 +48,11 @@ export default function Register() {
           position: "relative",
           overflow:"hidden",
           color:"#fff",
-
           background:
             "linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)",
         }}
       >
 
-        {/* EMOJI BACKGROUND */}
         <Box sx={{
           position:"absolute",
           inset:0,
@@ -65,7 +62,6 @@ export default function Register() {
           {"🍕🍔🍣🍜🍩🥗".repeat(25)}
         </Box>
 
-        {/* COLOR GLOWS */}
         <Box sx={{
           position:"absolute",
           width:350,
@@ -128,13 +124,15 @@ export default function Register() {
 
           <form onSubmit={handleSubmit}>
 
+            {/* FIXED INPUT HANDLERS BELOW */}
+
             <TextField
               label="Full Name"
               fullWidth
               required
               margin="normal"
               onChange={(e) =>
-                setForm({ ...form, name: e.target.value })
+                setForm(prev => ({ ...prev, name: e.target.value }))
               }
               InputLabelProps={{ style: { color: "#ddd" } }}
               InputProps={{ style: { color: "#fff" } }}
@@ -148,7 +146,7 @@ export default function Register() {
               required
               margin="normal"
               onChange={(e) =>
-                setForm({ ...form, email: e.target.value })
+                setForm(prev => ({ ...prev, email: e.target.value }))
               }
               InputLabelProps={{ style: { color: "#ddd" } }}
               InputProps={{ style: { color: "#fff" } }}
@@ -162,7 +160,7 @@ export default function Register() {
               required
               margin="normal"
               onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
+                setForm(prev => ({ ...prev, password: e.target.value }))
               }
               InputLabelProps={{ style: { color: "#ddd" } }}
               InputProps={{ style: { color: "#fff" } }}
