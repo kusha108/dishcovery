@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
 export default function RecipeCard({ recipe }) {
-  const backendURL = "https://dishcovery-f03b.onrender.com";
+  const backendURL = "http://localhost:5000";
   const navigate = useNavigate();
 
   const [liked, setLiked] = useState(false);

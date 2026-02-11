@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Container,
@@ -23,7 +24,7 @@ export default function RecipeDetail() {
   const [snack, setSnack] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const backendURL = "https://dishcovery-f03b.onrender.com";
+  const backendURL = "http://localhost:5000";
 
   useEffect(() => {
     api.get(`/recipes/${id}`)
