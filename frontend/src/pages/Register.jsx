@@ -18,15 +18,25 @@ export default function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await api.post("/auth/register", form);
-      setAlert(true);
-      setTimeout(() => navigate("/login"), 1500);
-    } catch (err) {
-      alert("Registration failed");
-    }
-  };
+  e.preventDefault();
+
+  try {
+    const res = await api.post("/auth/register", form);
+
+    console.log("SUCCESS:", res.data);
+
+    setAlert(true);
+    setTimeout(() => navigate("/login"), 1500);
+
+  } catch (err) {
+    console.log("ERROR:", err.response?.data);
+
+    window.alert(
+      err.response?.data?.message ||
+      "Registration failed"
+    );
+  }
+};
 
   return (
     <Fade in timeout={600}>
