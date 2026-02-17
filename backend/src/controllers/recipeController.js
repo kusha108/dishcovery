@@ -48,21 +48,20 @@ exports.createRecipe = async (req, res) => {
 
     /* ✅ IMAGE FIX (KEY CHANGE) */
     const image = req.file
-  ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+  ? `/uploads/${req.file.filename}`
   : null;
 
-
-    const recipe = await Recipe.create({
-      title,
-      description,
-      ingredients: parsedIngredients,
-      steps: parsedSteps,
-      cuisine,
-      cookTime,
-      calories,
-      image,
-      author: req.user.id,
-    });
+const recipe = await Recipe.create({
+  title,
+  description,
+  ingredients: parsedIngredients,
+  steps: parsedSteps,
+  cuisine,
+  cookTime,
+  calories,
+  image,
+  author: req.user.id,
+});
 
     res.status(201).json({
       success: true,

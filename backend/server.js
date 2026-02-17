@@ -61,7 +61,7 @@ app.use(express.urlencoded({ extended: true }));
    STATIC UPLOADS (FIXED)
 =========================== */
 
-const uploadsPath = path.join(__dirname, "uploads");
+const uploadsPath = path.join(__dirname, "/uploads");
 
 app.use("/uploads", express.static(uploadsPath));
 
