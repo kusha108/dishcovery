@@ -12,7 +12,10 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
 export default function RecipeCard({ recipe }) {
-  const backendURL = "http://localhost:5000";
+
+  // ✅ USE DEPLOYED BACKEND URL
+  const backendURL = "https://flavorly-backend.onrender.com";
+
   const navigate = useNavigate();
 
   const [liked, setLiked] = useState(false);
@@ -21,10 +24,15 @@ export default function RecipeCard({ recipe }) {
   const handleClick = () =>
     navigate(`/recipes/${recipe._id}`);
 
+  // ✅ FIXED IMAGE URL BUILDER
   const getImageURL = () => {
     if (!recipe?.image) return null;
-    const cleanPath = recipe.image.replace(/\\/g, "/");
-    return `${backendURL}/${cleanPath}`;
+
+    // if already full URL, return as is
+    if (recipe.image.startsWith("http"))
+      return recipe.image;
+
+    return `${backendURL}${recipe.image}`;
   };
 
   const like = async (e) => {
@@ -66,7 +74,6 @@ export default function RecipeCard({ recipe }) {
         },
       }}
     >
-      {/* IMAGE */}
       <CardMedia
         component="img"
         image={
@@ -76,11 +83,9 @@ export default function RecipeCard({ recipe }) {
         sx={{
           height: "100%",
           objectFit: "cover",
-          transition: "0.6s",
         }}
       />
 
-      {/* GRADIENT TOP BADGE */}
       <Box sx={{
         position:"absolute",
         top:12,
@@ -92,13 +97,11 @@ export default function RecipeCard({ recipe }) {
         fontWeight:700,
         background:
           "linear-gradient(45deg,#ff9800,#ff1744)",
-        color:"#fff",
-        boxShadow:"0 0 12px rgba(255,0,0,0.6)"
+        color:"#fff"
       }}>
         🔥 Trending
       </Box>
 
-      {/* OVERLAY */}
       <Box
         className="overlay"
         sx={{
@@ -114,7 +117,6 @@ export default function RecipeCard({ recipe }) {
           p: 2,
         }}
       >
-        {/* GLASS INFO PANEL */}
         <Box sx={{
           background:"rgba(255,255,255,0.08)",
           backdropFilter:"blur(12px)",
@@ -142,30 +144,17 @@ export default function RecipeCard({ recipe }) {
             👨‍🍳 {recipe.author?.name || "Chef"}
           </Typography>
 
-          {/* ACTIONS */}
           <Box>
             <IconButton onClick={like}>
-              <FavoriteIcon
-                sx={{
-                  color: liked ? "#ff1744" : "#fff",
-                  transition:"0.3s",
-                  "&:hover":{
-                    transform:"scale(1.2)"
-                  }
-                }}
-              />
+              <FavoriteIcon sx={{
+                color: liked ? "#ff1744" : "#fff"
+              }}/>
             </IconButton>
 
             <IconButton onClick={save}>
-              <BookmarkIcon
-                sx={{
-                  color: saved ? "#ff9800" : "#fff",
-                  transition:"0.3s",
-                  "&:hover":{
-                    transform:"scale(1.2)"
-                  }
-                }}
-              />
+              <BookmarkIcon sx={{
+                color: saved ? "#ff9800" : "#fff"
+              }}/>
             </IconButton>
           </Box>
         </Box>

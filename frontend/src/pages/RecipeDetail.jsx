@@ -24,7 +24,8 @@ export default function RecipeDetail() {
   const [snack, setSnack] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const backendURL = "http://localhost:5000";
+  //const backendURL = "http://localhost:5000";
+  const backendURL = "https://dishcovery-f03b.onrender.com";
 
   useEffect(() => {
     api.get(`/recipes/${id}`)
@@ -53,10 +54,11 @@ export default function RecipeDetail() {
       </Typography>
     );
 
-  const imageURL =
-    recipe.image
-      ? `${backendURL}/${recipe.image.replace(/\\/g, "/")}`
-      : "";
+  const imageURL = recipe.image
+  ? recipe.image.startsWith("http")
+    ? recipe.image
+    : `${backendURL}${recipe.image}`
+  : "";
 
   return (
     <Box
