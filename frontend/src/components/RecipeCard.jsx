@@ -14,7 +14,7 @@ import api from "../api/axios";
 export default function RecipeCard({ recipe }) {
 
   // ✅ USE DEPLOYED BACKEND URL
-  const backendURL = "https://flavorly-backend.onrender.com";
+  const backendURL = "https://dishcovery-f03b.onrender.com";
 
   const navigate = useNavigate();
 
